@@ -15,6 +15,7 @@
         <module>excel</module>
         <module>common</module>
         <module>json</module>
+        <module>basic</module>
     </modules>
 
     <dependencies>

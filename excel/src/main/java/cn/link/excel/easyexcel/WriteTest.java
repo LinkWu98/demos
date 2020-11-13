@@ -9,6 +9,7 @@ import com.alibaba.excel.EasyExcel;
 import org.junit.Test;
 
 import java.io.*;
+import java.net.MalformedURLException;
 import java.net.URL;
 import java.util.ArrayList;
 import java.util.List;
@@ -162,18 +163,18 @@ public class WriteTest {
         if (!file.exists()) {
             //2.没有就读url的,压缩图片，输出到本地
             InputStream in = new URL(COMMON_IMG).openConnection().getInputStream();
-            ImageUtil.compress(in, new File("K:\\test\\test80.jpg"), 80, 80);
+            ImageUtil.compress(in, new File("D:\\Test\\test80.jpg"), 80, 80);
             //ImageUtil.compress(in, file, 150, 150);
         }
 
         for (int i = 0; i < 10; i++) {
             ImageData imageData = new ImageData();
-            imageData.setInputStream(new FileInputStream(new File("K:\\test\\test80.jpg")));
+            imageData.setInputStream(new FileInputStream(new File("D:\\Test\\test80.jpg")));
             dataList.add(imageData);
         }
 
         //3. 写 excel
-        EasyExcel.write("K:\\test\\big.xlsx", ImageData.class).sheet().doWrite(dataList);
+        EasyExcel.write("D:\\Test\\big.xlsx", ImageData.class).sheet().doWrite(dataList);
 
     }
 
@@ -189,13 +190,16 @@ public class WriteTest {
     }
 
     @Test
-    public void testSuffix(){
+    public void testCompress() throws Exception {
 
+        File file = new File("D:\\Test\\test.jpg");
 
-        System.out.println(DA_IMG.split("=")[1].concat(".jpg"));
+        InputStream stream = HttpUtil.getForFile("https://www.pl298.com/sso/mongo/download.action?id=5c0a26b20e03d65ac8a0508f");
 
+        SSLUtil.trustAllHosts();
+
+        ImageUtil.compress(stream, file, 500, 500);
 
     }
-
 
 }
