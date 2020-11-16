@@ -4,12 +4,14 @@ import cn.link.common.exception.MyException;
 import cn.link.common.util.HttpUtil;
 import cn.link.common.util.SSLUtil;
 import cn.link.common.util.image.ImageUtil;
+import cn.link.common.util.image.ProductPic;
+import cn.link.common.util.image.ProductPicUtil;
 import cn.link.excel.easyexcel.bean.ImageData;
 import com.alibaba.excel.EasyExcel;
 import org.junit.Test;
 
 import java.io.*;
-import java.net.MalformedURLException;
+import java.net.HttpURLConnection;
 import java.net.URL;
 import java.util.ArrayList;
 import java.util.List;
@@ -89,12 +91,12 @@ public class WriteTest {
 
     }
 
-    @Test
-    public void thumbTest() {
-
-        ImageUtil.commpressPicForScale("K:\\test\\origin.jpg", "K:\\test\\Thumbnails.jpg", 2, 0.9, 1000, 1000);
-
-    }
+    //@Test
+    //public void thumbTest() {
+    //
+    //    ImageUtil.commpressPicForScale("K:\\test\\origin.jpg", "K:\\test\\Thumbnails.jpg", 2, 0.9, 1000, 1000);
+    //
+    //}
 
     /**
      * 获取图片url，本地有就读本地的，没有就读url的
@@ -190,15 +192,61 @@ public class WriteTest {
     }
 
     @Test
-    public void testCompress() throws Exception {
+    public void testCompress() {
 
-        File file = new File("D:\\Test\\test.jpg");
-
-        InputStream stream = HttpUtil.getForFile("https://www.pl298.com/sso/mongo/download.action?id=5c0a26b20e03d65ac8a0508f");
-
+        InputStream in = null;
+        HttpURLConnection urlConnection = null;
         SSLUtil.trustAllHosts();
+        try {
+            ProductPic productPic = ProductPicUtil.getProductPic(COMMON_IMG);
+            if (!productPic.getFile().exists()) {
+                productPic.getFile().getParentFile().mkdirs();
+                productPic.getFile().createNewFile();
+                if (productPic.isRequestFlag()) {
+                    in = HttpUtil.getForFile(COMMON_IMG);
+                } else {
+                    URL url = new URL(COMMON_IMG);
+                    urlConnection = (HttpURLConnection) url.openConnection();
+                    urlConnection.setConnectTimeout(5000);
+                    urlConnection.setReadTimeout(5000);
+                    in = urlConnection.getInputStream();
+                }
+            }
 
-        ImageUtil.compress(stream, file, 500, 500);
+            ImageUtil.compress(in, productPic.getFile(), 500, 500);
+
+        } catch (Exception e) {
+            e.printStackTrace();
+        } finally {
+
+            HttpUtil.closeResource();
+
+            if (urlConnection != null) {
+                urlConnection.disconnect();
+            }
+
+            if (in != null) {
+                try {
+                    in.close();
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
+            }
+
+
+        }
+
+    }
+
+    @Test
+    public void testCompress2() throws IOException {
+
+        File file = new File("D:\\Test\\action\\test.jpg");
+        file.mkdirs();
+        file.createNewFile();
+        InputStream in = null;
+        in = HttpUtil.getForFile(DA_IMG);
+        ImageUtil.compress(in, file, 500, 500);
 
     }
 
