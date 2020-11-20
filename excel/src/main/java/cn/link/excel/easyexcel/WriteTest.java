@@ -11,6 +11,7 @@ import com.alibaba.excel.EasyExcel;
 import org.junit.Test;
 
 import java.io.*;
+import java.math.BigDecimal;
 import java.net.HttpURLConnection;
 import java.net.URL;
 import java.util.ArrayList;
@@ -247,6 +248,14 @@ public class WriteTest {
         InputStream in = null;
         in = HttpUtil.getForFile(DA_IMG);
         ImageUtil.compress(in, file, 500, 500);
+
+    }
+
+    @Test
+    public void testCompare(){
+
+        BigDecimal a = new BigDecimal(500);
+        System.out.println((a.compareTo(BigDecimal.valueOf(501)) > 0));
 
     }
 

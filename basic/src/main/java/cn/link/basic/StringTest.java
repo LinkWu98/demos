@@ -1,6 +1,6 @@
 package cn.link.basic;
 
-import cn.link.common.util.StringUtil;
+import cn.link.common.util.basic.StringUtil;
 import org.junit.Test;
 
 /**

@@ -1,4 +1,4 @@
-package cn.link.common.util;
+package cn.link.common.util.basic;
 
 /**
  * @author Link50
