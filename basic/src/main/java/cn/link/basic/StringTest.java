@@ -11,7 +11,7 @@ import org.junit.Test;
 public class StringTest {
 
     @Test
-    public void picStrTest(){
+    public void picStrTest() {
 
         String path = StringUtil.ProductPicStr.path;
 
@@ -27,14 +27,27 @@ public class StringTest {
     }
 
     @Test
-    public void testPer(){
+    public void testPer() {
 
 
-        String wrongImg = new String(StringUtil.ProductPicStr.WRONG_IMG2);
+        String wrongImg = StringUtil.ProductPicStr.WRONG_IMG2;
         String correct = wrongImg.substring(wrongImg.indexOf("%") + 1);
         System.out.println(correct);
 
 
     }
+
+    @Test
+    public void mkdir() {
+
+        String o1cn01Img = StringUtil.ProductPicStr.COMMON_O1CN01_IMG.substring(StringUtil.ProductPicStr.COMMON_O1CN01_IMG.lastIndexOf("/") + 1);
+        if (o1cn01Img.startsWith("O1CN01")) {
+            String dirName = o1cn01Img.substring("O1CN01".length(), "O1CN01".length() + 1);
+            System.out.println(dirName);
+        }
+
+
+    }
+
 
 }
