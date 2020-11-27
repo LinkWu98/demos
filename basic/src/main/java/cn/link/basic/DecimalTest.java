@@ -30,4 +30,12 @@ public class DecimalTest {
         System.out.println(BigDecimal.ZERO);
     }
 
+    @Test
+    public void test4(){
+
+        System.out.println(Integer.parseInt("100"));
+        System.out.println(new BigDecimal("100.00").intValue());
+
+    }
+
 }
