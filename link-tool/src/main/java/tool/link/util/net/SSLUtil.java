@@ -1,4 +1,4 @@
-package cn.link.common.util;
+package tool.link.util.net;
 
 import javax.net.ssl.HttpsURLConnection;
 import javax.net.ssl.SSLContext;

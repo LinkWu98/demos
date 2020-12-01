@@ -1,0 +1,11 @@
+server:
+  port: 8080
+  servlet:
+    context-path: /tp
+
+
+# 腾讯云 cos 对象存储参数
+cos:
+  secretId: AKIDtb1AsL8dRu5xdUCbjaFdeXgY9WghfBgm
+  secretKey: 0wmMdmihT2LNUJLGqALHsQlpa1DD3m46
+  bucketName: product-pic-1302445902

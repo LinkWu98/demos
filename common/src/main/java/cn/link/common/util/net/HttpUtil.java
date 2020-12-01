@@ -1,9 +1,7 @@
-package cn.link.common.util;
+package cn.link.common.util.net;
 
 
 import org.apache.http.HttpEntity;
-import org.apache.http.HttpResponse;
-import org.apache.http.client.HttpClient;
 import org.apache.http.client.config.RequestConfig;
 import org.apache.http.client.methods.CloseableHttpResponse;
 import org.apache.http.client.methods.HttpGet;
@@ -32,7 +30,7 @@ public class HttpUtil {
     private static final Logger log = LoggerFactory.getLogger(HttpUtil.class);
     private static final HttpGet GET = new HttpGet();
     /**
-     * HttpClient 参数配置类
+     * http 配置对象
      */
     private static RequestConfig requestConfig;
     private static CloseableHttpClient httpClient;
@@ -93,25 +91,12 @@ public class HttpUtil {
 
             e.printStackTrace();
 
-        } finally {
-
-            //if (response != null) {
-            //    try {
-            //        response.close();
-            //    } catch (IOException e) {
-            //        e.printStackTrace();
-            //    }
-            //}
-
         }
 
         return null;
 
     }
 
-    /**
-     * 关闭资源
-     */
     public static void closeResource() {
 
         if (response != null) {

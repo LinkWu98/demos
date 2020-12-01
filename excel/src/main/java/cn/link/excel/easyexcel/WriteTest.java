@@ -1,8 +1,8 @@
 package cn.link.excel.easyexcel;
 
 import cn.link.common.exception.MyException;
-import cn.link.common.util.HttpUtil;
-import cn.link.common.util.SSLUtil;
+import cn.link.common.util.net.HttpUtil;
+import cn.link.common.util.net.SSLUtil;
 import cn.link.common.util.image.ImageUtil;
 import cn.link.common.util.image.ProductPic;
 import cn.link.common.util.image.ProductPicUtil;
