@@ -8,6 +8,8 @@ import org.springframework.web.bind.annotation.RestController;
 import tool.link.common.Response;
 
 import java.io.IOException;
+import java.util.HashMap;
+import java.util.Map;
 
 
 /**
@@ -46,6 +48,13 @@ public class CosController {
         cosService.downloadFile();
 
         return Response.succeed();
+    }
+
+    public static void main(String[] args) {
+
+
+
+
     }
 
 }
